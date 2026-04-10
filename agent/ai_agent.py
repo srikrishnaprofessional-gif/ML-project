@@ -23,6 +23,5 @@ def churn_agent(age, salary, purchases):
     else:
         return "✅ Low risk → upsell"
 
-
 # Call agent with correct values
 print(churn_agent(30, 50000, 2))

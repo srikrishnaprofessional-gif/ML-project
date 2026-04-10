@@ -18,8 +18,16 @@ class InputData(BaseModel):
     purchases: int
 
 @app.post("/predict")
-def predict(age: int, salary: int, purchases: int):
-    data = np.array([[age, salary, purchases]])
-    prediction = model.predict(data)
+def predict(data: InputData):
 
-    return {"churn": int(prediction[0])}
+    input_array = np.array([[data.age, data.salary, data.purchases]])
+
+    prediction = model.predict(input_array)
+    prob = model.predict_proba(input_array)
+
+    confidence = max(prob[0])
+
+    return {
+        "churn": int(prediction[0]),
+        "confidence": float(confidence)
+    }
