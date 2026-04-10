@@ -4,16 +4,15 @@ import numpy as np
 
 app = FastAPI()
 
-model = pickle.load(open("models/model.pkl","rb"))
+model = pickle.load(open("models/model.pkl", "rb"))
 
 @app.get("/")
 def home():
-    return {"message":"API running"}
+    return {"message": "ML API Running 🚀"}
 
 @app.post("/predict")
-def predict(age:int, salary:int, purchases:int):
-
-    data = np.array([[age,salary,purchases]])
+def predict(age: int, salary: int, purchases: int):
+    data = np.array([[age, salary, purchases]])
     prediction = model.predict(data)
 
     return {"churn": int(prediction[0])}
