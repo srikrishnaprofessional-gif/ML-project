@@ -13,7 +13,7 @@ def churn_agent(age, salary, purchases):
     res = requests.post(url, params=params)
     result = res.json()
 
-    print("API Response:", result)
+    print("RAW API RESPONSE:", result)
 
     if "churn" not in result:
         return "❌ API error: check input or server"

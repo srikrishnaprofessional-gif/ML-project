@@ -10,6 +10,13 @@ model = pickle.load(open("models/model.pkl", "rb"))
 def home():
     return {"message": "ML API Running 🚀"}
 
+from pydantic import BaseModel
+
+class InputData(BaseModel):
+    age: int
+    salary: int
+    purchases: int
+
 @app.post("/predict")
 def predict(age: int, salary: int, purchases: int):
     data = np.array([[age, salary, purchases]])
